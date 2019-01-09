@@ -7,6 +7,7 @@ import java.util.Map;
 public class EvaluationService {
 
 	/**
+	 * DONE
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
 	 * 
@@ -22,6 +23,7 @@ public class EvaluationService {
 	}
 
 	/**
+	 * DONE
 	 * 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
 	 * Acronyms)! Help generate some jargon by writing a program that converts a
 	 * long name like Portable Network Graphics to its acronym (PNG).
@@ -30,11 +32,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String acronym = null;
+		for (int i = 0; i < phrase.length(); i++) {
+			if (i == 0)
+				acronym = String.valueOf(phrase.charAt(i));
+			else if (Character.isLetterOrDigit(phrase.charAt(i-1))==false) {
+				if (Character.isSpaceChar(phrase.charAt(i))==false)	
+					acronym = acronym.concat(String.valueOf(phrase.charAt(i)));
+			}
+		}
+		acronym = acronym.toUpperCase();
+		return acronym;
 	}
 
 	/**
+	 * DONE
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
 	 * equilateral triangle has all three sides the same length. An isosceles
 	 * triangle has at least two sides the same length. (It is sometimes specified
@@ -43,6 +55,7 @@ public class EvaluationService {
 	 * different lengths.
 	 *
 	 */
+
 	static class Triangle {
 		private double sideOne;
 		private double sideTwo;
@@ -84,23 +97,30 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if ((this.sideOne==this.sideTwo)&&(this.sideOne==this.sideThree)&&(this.sideTwo==this.sideThree))
+				return true;
+			else
+				return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if ((this.sideOne==this.sideTwo)||(this.sideOne==this.sideThree)||(this.sideTwo==this.sideThree))
+				return true;
+			else
+				return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if ((this.sideOne!=this.sideTwo)&&(this.sideOne!=this.sideThree)&&(this.sideTwo!=this.sideThree))
+				return true;
+			else
+				return false;
 		}
 
 	}
 
 	/**
+	 * DONE
 	 * 4. Given a word, compute the scrabble score for that word.
 	 * 
 	 * --Letter Values-- Letter Value A, E, I, O, U, L, N, R, S, T = 1; D, G = 2; B,
@@ -116,8 +136,44 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int score = 0;
+		string = string.toUpperCase();
+		for (int i = 0; i < string.length(); i++) {
+			if (String.valueOf(string.charAt(i)).equals("A")||
+				String.valueOf(string.charAt(i)).equals("E")||
+				String.valueOf(string.charAt(i)).equals("I")||
+				String.valueOf(string.charAt(i)).equals("O")||
+				String.valueOf(string.charAt(i)).equals("U")||
+				String.valueOf(string.charAt(i)).equals("L")||
+				String.valueOf(string.charAt(i)).equals("N")||
+				String.valueOf(string.charAt(i)).equals("R")||
+				String.valueOf(string.charAt(i)).equals("S")||
+				String.valueOf(string.charAt(i)).equals("T"))
+				score+=1;
+			else if (String.valueOf(string.charAt(i)).equals("D")||
+					String.valueOf(string.charAt(i)).equals("G"))
+				score+=2;
+			else if (String.valueOf(string.charAt(i)).equals("B")||
+					String.valueOf(string.charAt(i)).equals("C")||
+					String.valueOf(string.charAt(i)).equals("M")||
+					String.valueOf(string.charAt(i)).equals("P"))
+				score+=3;
+			else if (String.valueOf(string.charAt(i)).equals("F")||
+					String.valueOf(string.charAt(i)).equals("H")||
+					String.valueOf(string.charAt(i)).equals("V")||
+					String.valueOf(string.charAt(i)).equals("W")||
+					String.valueOf(string.charAt(i)).equals("Y"))
+				score+=4;
+			else if (String.valueOf(string.charAt(i)).equals("K"))
+				score+=5;
+			else if (String.valueOf(string.charAt(i)).equals("J")||
+					String.valueOf(string.charAt(i)).equals("X"))
+				score+=8;
+			else if (String.valueOf(string.charAt(i)).equals("Q")||
+					String.valueOf(string.charAt(i)).equals("Z"))
+				score+=10;
+			}
+		return score;
 	}
 
 	/**
